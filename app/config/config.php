@@ -213,7 +213,7 @@ $config['directory_trigger'] = 'd';
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 0;
+$config['log_threshold'] = 1;
 
 /*
 |--------------------------------------------------------------------------
@@ -469,3 +469,31 @@ $config['time_reference'] = 'local';
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+
+/*
+API BANCO NACIÓN CONFIGURATION
+Obtener API Key de:
+https://estadisticasbcra.com/api/registracion
+
+Tipos de cotizaciones/indicadores disponibles:
+https://estadisticasbcra.com/api/documentacion
+*/
+
+$config['bna_access_token'] = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTE1NTU5ODMsInR5cGUiOiJleHRlcm5hbCIsInVzZXIiOiJtYXJpYW5vbWFjaGFvQGdtYWlsLmNvbSJ9.7y7GfMFW28q7J0k8PUomKSXRUXx-x8kaJuB6rhF22rJ5eXhEUM9mMDgalTL59FJj9UK9nD81FE284QHbbxzUWA';
+
+$config['api_url'] = 'https://api.estadisticasbcra.com/';
+
+$config['api_types'] = array(
+	'usd', 'usd_of', 'usd_of_minorista', 'lebac','leliq','merval','merval_usd'
+);
+
+$config['api_types_label'] = array(
+	'usd' 					=> 'Dólar',
+	'usd_of' 				=> 'Dólar Oficial',
+	'usd_of_minorista' 		=> 'Dólar Oficial Minorista',
+	'lebac' 				=> 'Lebacs',
+	'leliq' 				=> 'Leliq',
+	'merval' 				=> 'MERVAL',
+	'merval_usd'			=> 'MERVAL en dólares'
+);
