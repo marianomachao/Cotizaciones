@@ -33,3 +33,6 @@ $config['api_limit_table_name'] = 'api_limit';
  * API keys database table name 
  */
 $config['api_keys_table_name'] = 'api_keys';
+
+
+$config['internal_api_key'] = 'fe5fe4af3281ec07715498f052a7350c26c151c0';

@@ -14,7 +14,14 @@ class Cotizaciones_WS_model extends CI_Model {
         	$this->types = $this->config->item('api_types');
         }
 
-        public function getData($type) {
+        public function get($type) {
+        	$data = $this->getDataFromWS($type);
+        }
+
+        /*
+        	Trae los datos desde la API Externa del BNA
+        */
+        public function getDataFromWS($type) {	
 
         	// Valido que sea un cotizacion/indicador correcto
         	if(!in_array($type, $this->types)) {
@@ -23,7 +30,6 @@ class Cotizaciones_WS_model extends CI_Model {
         	}
 
         	$this->api_url .= $type;
-        	// Obtengo los datos de la API Externa
         	$opts = [
 			    "http" => [
 			        "method" => "GET",

@@ -1,10 +1,9 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
-if(!function_exists('insert')) 
+if(!function_exists('get_api_key')) 
 {
-    function insert($table_name, $insert_data)
-    {
-        $CI =& get_instance();
-        return $CI->db->insert($table_name, $insert_data);
+    function get_api_key() {
+    	$CI = & get_instance();
+    	return $CI->config->item('internal_api_key');
     }
 }

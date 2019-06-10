@@ -5,6 +5,6 @@
     <meta name="author" content="Mariano Machao">
     <title>Cotizaciones</title>
 
-    <link href="<?=$assets_url ?>css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?=$assets_url ?>css/form-cotizador.css" rel="stylesheet">
+    <link href="<?=asset_url() ?>css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?=asset_url() ?>css/form-cotizador.css" rel="stylesheet">
 </head>

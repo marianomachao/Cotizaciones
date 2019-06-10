@@ -6,11 +6,16 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$this->loadPartials();
+		$this->view_data['types'] = $this->config->item('api_types_label');
 		$this->load->view('index', $this->view_data);
 	}
 
 	private function loadPartials() {
-		$url_data = array( 'assets_url' => $this->config->item('assets_url'));
+		$url_data = array(
+				'assets_url' => $this->config->item('assets_url'),
+				'api_url' => api_url()
+		);
+
 		$this->view_data['head'] = $this->load->view('partials/head', $url_data, true);
 		$this->view_data['header'] = $this->load->view('partials/header', $url_data, true);
 		$this->view_data['footer'] = $this->load->view('partials/footer', $url_data, true);

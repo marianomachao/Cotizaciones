@@ -12,9 +12,8 @@ class Api extends API_Controller
     
     public function get($type)
     {
-        // header("Access-Control-Allow-Origin: *");
         try {
-        	$data = $this->Cotizaciones_WS_model->getData($type);
+        	$data = $this->Cotizaciones_WS_model->get($type);
         } catch(Exception $e) {
 
         	$this->api_return(
@@ -28,7 +27,7 @@ class Api extends API_Controller
         // Cofiguro salida del servicio
         $this->_apiConfig([
         	'type' => ['GET'],
-            'key' => ['get', $this->key() ], 
+            'key' => ['get', get_api_key() ], 
         ]);
 
         // Devuelvo datos
@@ -41,17 +40,16 @@ class Api extends API_Controller
 
     }
 
-    /**
-     * Check API Key
-     *
-     * @return key|string
-     */
-    private function key()
-    {
-        // use database query for get valid key
-
-        return 1452;
-    }
+    // /**
+    //  * Check API Key
+    //  *
+    //  * @return key|string
+    //  */
+    // private function key()
+    // {
+    //     // use database query for get valid key
+    //     return get_api_key();
+    // }
 
 
     /**

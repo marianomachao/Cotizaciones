@@ -484,6 +484,7 @@ Tipos de cotizaciones/indicadores disponibles:
 https://estadisticasbcra.com/api/documentacion
 */
 
+$config['api_uri'] = 'api/';
 $config['bna_access_token'] = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTE1NTU5ODMsInR5cGUiOiJleHRlcm5hbCIsInVzZXIiOiJtYXJpYW5vbWFjaGFvQGdtYWlsLmNvbSJ9.7y7GfMFW28q7J0k8PUomKSXRUXx-x8kaJuB6rhF22rJ5eXhEUM9mMDgalTL59FJj9UK9nD81FE284QHbbxzUWA';
 
 $config['api_url'] = 'https://api.estadisticasbcra.com/';
@@ -501,3 +502,4 @@ $config['api_types_label'] = array(
 	'merval' 				=> 'MERVAL',
 	'merval_usd'			=> 'MERVAL en dólares'
 );
+
