@@ -21,7 +21,9 @@ class Api extends API_Controller
 	                'success' => false,
 	                'error' => $e->getMessage(),
 	            ],
-	        408);
+	        500);
+
+	        return false;
         }
 
         // Cofiguro salida del servicio

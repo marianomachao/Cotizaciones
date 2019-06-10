@@ -14,8 +14,25 @@ class Cotizaciones_WS_model extends CI_Model {
         	$this->types = $this->config->item('api_types');
         }
 
+        /*
+			Llama a getDataFromWS y aplica la logica de negocio al array obtenido.
+			El servicio web externo solo devuelve valores históricos, por lo tanto toma el elemento correspondiente a la cotizacion del ultimo dia, lo formatea y lo devuelve.
+        */
         public function get($type) {
+
         	$data = $this->getDataFromWS($type);
+        	$data = json_decode($data);
+
+        	if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
+        		throw new Exception('Los datos devueltos por el WS son inválidos.');
+        	}
+
+        	if (count($data) == 0) {
+        		throw new Exception('El WS no devolvió ningun dato.');
+        	}
+
+        	$ultima_cotizacion = array_pop($data);
+        	return $ultima_cotizacion;
         }
 
         /*
