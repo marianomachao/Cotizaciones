@@ -14,7 +14,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h4 class="mb-3">Elja el tipo de Cambio</h4>
+                <h4 class="mb-3">Elja el tipo de cambio/indicador</h4>
             </div>
 
             <div class="col-md-8">
@@ -49,7 +49,7 @@
                         </div>
                         <div class="text-success">
                             <h1 class="my-0" id="container-valor">$0,00</h1>
-                            <small class="text-muted" id="container-fecha" style="display: none">al día 16-06-2019</small>
+                            <small class="text-muted" id="ultima-cotizacion-container" style="display: none">&uacute;ltima cotizaci&oacute;n <span>16-06-2019</span></small>
                         </div>
                     </li>
                 </ul>

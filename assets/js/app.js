@@ -1,12 +1,13 @@
 var App = (function() {
-
+    // Configuración API
     var apiBaseURL = '';
     var apiKey = '';
 
+    // Elementos DOM
     var $btn = document.getElementById('boton-consultar');
     var $selector = document.getElementById('selector-tipo');
     var $valorContainer = document.getElementById('container-valor');
-    var $fechaContainer = document.getElementById('container-fecha');
+    var $ultimaCotizacionContainer = document.getElementById('ultima-cotizacion-container');
     var $loading = document.getElementById('loading');
     var $errorMsg = document.getElementById('error-message');
 
@@ -23,16 +24,34 @@ var App = (function() {
             var type = $selector.value;
             if(type === undefined || type == '' || type == null) {
                 return false;
-                // errorMessage('Debe elegir un tipo de cotización/indicador.');
             }
-            consultarAPI(type);
+            consumeAPI(type);
         });
     };
 
-    var consultarAPI = function(type) {
-        $loading.style.display = 'block';
-        clearErrorMessage();
+    // Formato: 123.456,78
+    var formatNumber = function(n) {
+        return new Intl.NumberFormat("de-DE").format(n);
+    };
+
+    var renderResponse = function(data, type) {
+        $valorContainer.style.display = 'block';
+        $ultimaCotizacionContainer.style.display = 'block';
+        $ultimaCotizacionContainer.querySelectorAll('span').innerHTML = data.ultima_fecha;
         
+        var currency = '$';
+        if (type == 'merval_usd')
+            var currency = 'U$S '
+
+        $valorContainer.innerHTML = currency + formatNumber(data.cotizacion);
+    };
+
+    var consumeAPI = function(type) {
+        $loading.style.display = 'block';
+        $valorContainer.style.display = 'none';
+        $ultimaCotizacionContainer.style.display = 'none';
+        clearErrorMessage();
+
         var apiURL = apiBaseURL + type + '?key=' + apiKey;
 
         fetch(apiURL)
@@ -41,8 +60,11 @@ var App = (function() {
         })
         .then(function(data) {
             $loading.style.display = 'none';
-            var data = JSON.parse(data.result);
-            console.log(data);
+            
+            if(data.success)
+                renderResponse(data.result, type);
+            else
+                errorMessage(data.error);
         })
         .catch(function(error) {
             console.log(error.message);
@@ -52,7 +74,7 @@ var App = (function() {
 
     };
 
-    // Public
+    // Publico
     return {
         init: function(url, api_key) {
             triggerEvents();

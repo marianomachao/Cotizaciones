@@ -32,7 +32,12 @@ class Cotizaciones_WS_model extends CI_Model {
         	}
 
         	$ultima_cotizacion = array_pop($data);
-        	return $ultima_cotizacion;
+
+        	$response = array();
+        	$response['cotizacion'] = $ultima_cotizacion->v;
+        	$response['ultima_fecha'] = $ultima_cotizacion->d;
+
+        	return $response;
         }
 
         /*
