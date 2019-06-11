@@ -69,7 +69,7 @@ let App = (function() {
                 errorMessage(data.error);
         })
         .catch(function(error) {
-            errorMessage(error.message);
+            errorMessage('Ocurrió un error. Compruebe su conexión a internet.');
             console.log(error.message);
         });
 
