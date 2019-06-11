@@ -7,7 +7,7 @@ Dichas cotizaciones e indicadores son consumidos desde un Web Service externo, p
 ## Requisitos del servidor
 
 - `PHP >= 5.6`
-- `Apache HTTP Server`
+- `Apache HTTP Server con mod_rewrite activado.` 
 
 ## Instalación
 
