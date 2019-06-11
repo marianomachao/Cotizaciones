@@ -24,11 +24,13 @@ class Cotizaciones_WS_model extends CI_Model {
         	$data = json_decode($data);
 
         	if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
-        		throw new Exception('Los datos devueltos por el WS son inválidos.');
+        		throw new Exception('Hubo un error al consultar. Por favor intente luego.');
+        		return false;
         	}
 
         	if (count($data) == 0) {
-        		throw new Exception('El WS no devolvió ningun dato.');
+        		throw new Exception('Hubo un error al consultar. Por favor intente luego.');
+        		return false;
         	}
 
         	$ultima_cotizacion = array_pop($data);
@@ -48,7 +50,7 @@ class Cotizaciones_WS_model extends CI_Model {
         	// Valido que sea un cotizacion/indicador correcto
         	if(!in_array($type, $this->types)) {
         		throw new Exception('Tipo de cotización inválido.');
-        		return array();
+        		return false;
         	}
 
         	$this->api_url .= $type;
@@ -63,7 +65,7 @@ class Cotizaciones_WS_model extends CI_Model {
 			try {
 				$data = file_get_contents($this->api_url, false, $context);
 			} catch(Exception $e) {
-				throw new Exception("Error al intentar obtener los datos del Webservice externo.");
+				throw new Exception('Hubo un error al consultar. Por favor intente luego.');
 			}
 
 			return $data;

@@ -49,7 +49,7 @@
                         </div>
                         <div class="text-success">
                             <h1 class="my-0" id="container-valor">$0,00</h1>
-                            <small class="text-muted" id="ultima-cotizacion-container" style="display: none">&uacute;ltima cotizaci&oacute;n <span>16-06-2019</span></small>
+                            <small class="text-muted" id="ultima-cotizacion-container" style="display: none">&Uacute;ltima cotizaci&oacute;n <span>16-06-2019</span></small>
                         </div>
                     </li>
                 </ul>

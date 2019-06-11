@@ -12,6 +12,9 @@ var App = (function() {
     var $errorMsg = document.getElementById('error-message');
 
     var errorMessage = function(msg) {
+        $loading.style.display = 'none';
+        $valorContainer.innerHTML = '$0,00';
+        $valorContainer.style.display = 'block';
         $errorMsg.innerHTML = msg;
     };
 
@@ -67,9 +70,8 @@ var App = (function() {
                 errorMessage(data.error);
         })
         .catch(function(error) {
+            errorMessage(error.message);
             console.log(error.message);
-            $loading.style.display = 'none';
-            errorMessage('Hubo un error al consultar. Por favor intente luego.');
         });
 
     };
