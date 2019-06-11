@@ -1,30 +1,30 @@
-var App = (function() {
+let App = (function() {
     // Configuración API
-    var apiBaseURL = '';
-    var apiKey = '';
+    let apiBaseURL = '';
+    let apiKey = '';
 
     // Elementos DOM
-    var $btn = document.getElementById('boton-consultar');
-    var $selector = document.getElementById('selector-tipo');
-    var $valorContainer = document.getElementById('container-valor');
-    var $ultimaCotizacionContainer = document.getElementById('ultima-cotizacion-container');
-    var $loading = document.getElementById('loading');
-    var $errorMsg = document.getElementById('error-message');
+    const $btn = document.getElementById('boton-consultar');
+    const $selector = document.getElementById('selector-tipo');
+    const $valorContainer = document.getElementById('container-valor');
+    const $ultimaCotizacionContainer = document.getElementById('ultima-cotizacion-container');
+    const $loading = document.getElementById('loading');
+    const $errorMsg = document.getElementById('error-message');
 
-    var errorMessage = function(msg) {
+    const errorMessage = function(msg) {
         $loading.style.display = 'none';
         $valorContainer.innerHTML = '$0,00';
         $valorContainer.style.display = 'block';
         $errorMsg.innerHTML = msg;
     };
 
-    var clearErrorMessage = function() {
+    const clearErrorMessage = function() {
         $errorMsg.innerHTML = '';
     };
 
-    var triggerEvents = function() {
+    const triggerEvents = function() {
         $btn.addEventListener("click", function(event) {
-            var type = $selector.value;
+            let type = $selector.value;
             if(type === undefined || type == '' || type == null) {
                 return false;
             }
@@ -33,34 +33,33 @@ var App = (function() {
     };
 
     // Formato: 123.456,78
-    var formatNumber = function(n) {
+    const formatNumber = function(n) {
         return new Intl.NumberFormat("de-DE").format(n);
     };
 
-    var renderResponse = function(data, type) {
+    const renderResponse = function(data, type) {
         $valorContainer.style.display = 'block';
         $ultimaCotizacionContainer.style.display = 'block';
         $ultimaCotizacionContainer.querySelectorAll('span').innerHTML = data.ultima_fecha;
         
-        var currency = '$';
+        let currency = '$';
         if (type == 'merval_usd')
-            var currency = 'U$S '
+            currency = 'U$S ';
 
         $valorContainer.innerHTML = currency + formatNumber(data.cotizacion);
     };
 
-    var consumeAPI = function(type) {
+
+    const consumeAPI = function(type) {
         $loading.style.display = 'block';
         $valorContainer.style.display = 'none';
         $ultimaCotizacionContainer.style.display = 'none';
         clearErrorMessage();
 
-        var apiURL = apiBaseURL + type + '?key=' + apiKey;
+        let apiURL = apiBaseURL + type + '?key=' + apiKey;
 
         fetch(apiURL)
-        .then(function(response) {
-            return response.json();
-        })
+        .then(res => res.json())
         .then(function(data) {
             $loading.style.display = 'none';
             
@@ -84,4 +83,5 @@ var App = (function() {
             apiKey = api_key;
         }
     }
+
 }());
